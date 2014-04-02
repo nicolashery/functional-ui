@@ -1,0 +1,20 @@
+[
+  {
+    "id": "swordsman",
+    "name": "Swordsman",
+    "description": "These little chaps don't ask for much. Put a sword in their hands, and tell them who to hit. The more they are, the merrier, so make sure you have plenty.",
+    "cost": 10
+  },
+  {
+    "id": "archer",
+    "name": "Archer",
+    "description": "Deadly with a bow and arrow. Can shoot a duck from the sky, a deer behind a bush, and occasionaly a foe on the castle walls. Careful though, if charged by something mean and ugly, will run the other way.",
+    "cost": 20
+  },
+  {
+    "id": "knight",
+    "name": "Knight",
+    "description": "Wears plated armor and carries around four feet of razor-sharp steel. A knight without a horse is still a knight, but a knight with a horse is definitely a faster knight.",
+    "cost": 50
+  }
+]
