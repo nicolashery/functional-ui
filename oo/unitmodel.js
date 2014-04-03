@@ -5,7 +5,8 @@
 
     this._attributes = attributes;
     this._attributes.count = 0;
-    this._onChange = function() {};
+
+    this._onChangeHandlers = [];
   }
 
   UnitModel.prototype.set = function(attributes) {
@@ -14,7 +15,7 @@
       self._attributes[name] = value;
     });
     this._log('Changed', attributes);
-    this._onChange(this.serialize());
+    this._handleChange();
     return this;
   };
 
@@ -37,14 +38,28 @@
     return this;
   };
 
-  UnitModel.prototype.setOnChangeHandler = function(handler) {
-    this._onChange = handler;
+  UnitModel.prototype.addOnChangeHandler = function(handler) {
+    this._onChangeHandlers.push(handler);
     return this;
   };
 
-  UnitModel.prototype.unsetOnChangeHandler = function() {
-    this._onChange = function() {};
+  UnitModel.prototype.removeOnChangeHandler = function(handler) {
+    var savedHandlers = this._onChangeHandlers;
+    var keepHandlers = [];
+    _.forEach(savedHandlers, function(savedHandler) {
+      if (savedHandler !== handler) {
+        keepHandlers.push(savedHandler);
+      }
+    });
+    this._onChangeHandlers = keepHandlers;
     return this;
+  };
+
+  UnitModel.prototype._handleChange = function() {
+    var attributes = this.serialize();
+    _.forEach(this._onChangeHandlers, function(handler) {
+      handler(attributes);
+    });
   };
 
   UnitModel.prototype._log = function() {

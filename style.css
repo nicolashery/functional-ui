@@ -117,9 +117,70 @@ h1 {
 .unit-cost {
   padding-top: 0;
   text-align: right;
+  color: #aaa;
 }
 
 .unit-cost-value {
   font-weight: bold;
+  color: #555;
+}
+
+.summary {
+  width: 400px;
+  margin-bottom: 30px;
+  border: 1px solid #aaa;
+}
+
+.summary-header {
+  background: #aaa;
+  color: #fff;
+  border-bottom: 1px solid #aaa;
+}
+
+.summary-active .summary-header {
+  background: #948ffc;
+}
+
+.summary-title {
+  display: inline-block;
+  padding: 10px 5px;
+}
+
+.summary-unit,
+.summary-total-cost {
+  font-size: 14px;
+  color: #aaa;
+}
+
+.summary-unit-name,
+.summary-unit-cost,
+.summary-unit-count {
+  display: inline-block;
+  padding: 5px 5px;
+}
+
+.summary-unit-selected .summary-unit-name,
+.summary-unit-selected .summary-unit-cost-value,
+.summary-unit-selected .summary-unit-count-value {
+  color: #555;
+}
+
+.summary-unit-cost-value,
+.summary-unit-count-value {
+  font-weight: bold;
+}
+
+
+.summary-total-cost {
+  padding: 10px 5px;
+  padding-top: 0;
+  text-align: right;
+}
+
+.summary-total-cost-value {
+  font-weight: bold;
+}
+
+.summary-active .summary-total-cost-value {
   color: #555;
 }

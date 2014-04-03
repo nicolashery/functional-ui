@@ -21,7 +21,7 @@
       '<div class="unit-description">',
       data.description,
       '</div>',
-      '<div class="unit-cost">Cost: <span class="unit-cost-value">',
+      '<div class="unit-cost">Cost <span class="unit-cost-value">',
       data.cost,
       '</span></div>',
       '</div>'

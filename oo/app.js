@@ -1,7 +1,8 @@
 /* global $, _ */
 (function() {
-  var UnitModel = window.UnitModel;
+  var UnitCollection = window.UnitCollection;
   var UnitView = window.UnitView;
+  var SummaryView = window.SummaryView;
 
   var App = {};
 
@@ -13,17 +14,14 @@
   };
 
   App.setup = function(units) {
-    units = _.map(units, function(unit) {
-      unit = new UnitModel(unit);
-      return unit;
-    });
+    units = new UnitCollection(units);
 
     var createUnit = function(options) {
       var view = new UnitView($(options.selector), options.model);
       view.render();
     };
 
-    var unitCreations = _.map(units, function(unit) {
+    var unitCreations = units.map(function(unit) {
       return {
         selector: '#' + unit.get('id'),
         model: unit
@@ -31,6 +29,9 @@
     });
 
     _.forEach(unitCreations, createUnit);
+
+    var summaryView = new SummaryView($('#summary'), units);
+    summaryView.render();
   };
 
   App._log = function() {

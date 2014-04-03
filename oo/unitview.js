@@ -3,7 +3,10 @@
   function UnitView(el, model) {
     this._$el = $(el);
     this._model = model;
-    this._model.setOnChangeHandler(this.update.bind(this));
+
+    this.update = this.update.bind(this);
+    this._model.addOnChangeHandler(this.update);
+
     this._cache = {};
   }
 
@@ -28,7 +31,7 @@
       '<div class="unit-description">',
       data.description,
       '</div>',
-      '<div class="unit-cost">Cost: <span class="unit-cost-value">',
+      '<div class="unit-cost">Cost <span class="unit-cost-value">',
       data.cost,
       '</span></div>',
       '</div>'
@@ -63,9 +66,9 @@
   };
 
   UnitView.prototype.update = function() {
+    this._updateSelected();
     var attributeNames = ['name', 'count', 'description', 'cost'];
     _.forEach(attributeNames, this._updateValue.bind(this));
-    this._updateSelected();
     this._cacheModelValues();
     return this;
   };
@@ -77,7 +80,7 @@
       return this;
     }
 
-    if (this._isSelected()) {
+    if (isSelected) {
       this._$root.addClass('unit-selected');
     }
     else {
@@ -125,7 +128,7 @@
   };
 
   UnitView.prototype.destroy = function() {
-    this._model.unsetOnChangeHandler();
+    this._model.removeOnChangeHandler(this.update);
     this._$el.html('');
     this._log('Destroyed');
   };
