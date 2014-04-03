@@ -16,6 +16,7 @@
   SummaryView.prototype.render = function() {
     var isActive = this._isActive();
     var unitsHtml = this._getUnitsHtml();
+    var totalCost = this._collection.getTotalCost();
 
     var html = [
       '<div class="summary',
@@ -29,7 +30,7 @@
       '</div>',
       '<div class="summary-total-cost">',
       'Total Cost <span class="summary-total-cost-value">',
-      this._collection.getTotalCost(),
+      totalCost,
       '</span></div>',
       '</div>'
     ].join('');

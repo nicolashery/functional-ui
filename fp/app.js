@@ -2,6 +2,7 @@
 (function() {
   var Engine = window.Engine;
   var Unit = window.Unit;
+  var Summary = window.Summary;
 
   var App = {};
 
@@ -36,6 +37,8 @@
       };
     });
     _.forEach(unitCreations, createUnit);
+
+    Engine.create(Summary, '#summary', units);
   };
 
   App.trainUnitHandler = function(unitId, e) {
@@ -87,6 +90,8 @@
       };
     });
     _.forEach(unitUpdates, updateUnit);
+
+    Engine.update('#summary', units);
   };
 
   App.setState = function(stateModifications) {
